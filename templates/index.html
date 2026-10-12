@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySmart Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef3ff;
+            margin: 0;
+            color: #202b3c;
+        }
+        header {
+            background: #174ea6;
+            color: white;
+            text-align: center;
+            padding: 25px 10px;
+        }
+        main {
+            max-width: 600px;
+            margin: 25px auto;
+            padding: 15px;
+        }
+        section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+        textarea, input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+        }
+        button {
+            background: #174ea6;
+            color: white;
+            border: 0;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .result {
+            background: #e5f6e8;
+            padding: 12px;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>StudySmart Tools</h1>
+        <p>Free tools for every student!</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>📝 Word Counter</h2>
+            <p>Count words in your assignment.</p>
+
+            <form method="POST">
+                <textarea name="text" rows="5"
+                    placeholder="Paste your text here..."
+                    required></textarea>
+                <button type="submit">Count Words</button>
+            </form>
+
+            {% if words is not none %}
+            <div class="result">
+                <p>Words: <strong>{{ words }}</strong></p>
+                <p>Characters: <strong>{{ chars }}</strong></p>
+            </div>
+            {% endif %}
+        </section>
+
+        <section>
+            <h2>🎓 Percentage Calculator</h2>
+            <p>Calculate your exam percentage.</p>
+
+            <form method="POST">
+                <input type="hidden" name="tool" value="percentage">
+                <input type="number" name="marks"
+                    placeholder="Marks obtained" min="0" required>
+                <input type="number" name="total"
+                    placeholder="Total marks" min="1" required>
+                <button type="submit">Calculate Percentage</button>
+            </form>
+
+            {% if percentage is not none %}
+            <div class="result">
+                Your percentage: <strong>{{ percentage }}%</strong>
+            </div>
+            {% endif %}
+
+            {% if error %}
+            <p>{{ error }}</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
